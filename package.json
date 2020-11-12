@@ -1,0 +1,30 @@
+{
+  "name": "bone-project",
+  "version": "1.0.0",
+  "description": "项目初始化流程：\r 1.npm init 建package.json文件\r 2.npm install gulp 下载gulp文件\r 3.src文件下建html、css、images、js、libs文件夹\r 4.建gulpfile.js文件",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.0",
+    "@babel/preset-env": "^7.12.0",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-connect": "^5.7.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.14.1"
+  },
+  "dependencies": {
+    "echarts": "^4.9.0",
+    "http-proxy-middleware": "^1.0.6"
+  }
+}

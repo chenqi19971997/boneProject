@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 本页使用jquery、bootstrap -->
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/register.css"><!-- 是css 不是scss -->
+    <script src="/libs/jquery-3.5.1.min.js"></script>
+    <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/modules/footer.css">
+</head>
+
+<body>
+    <header>
+        <a href="/index.html" class="a1"></a>
+    </header>
+    <div class="topmain">
+        <div class="top">
+            创建账户
+        </div>
+        <form>
+            <div class="name">
+                <div class="form-group name1">
+                    <input type="text" class="form-control" id="firstname" placeholder="姓氏">
+                </div>
+                <div class="form-group name2">
+                    <input type="text" class="form-control" id="lastname" placeholder="名字">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="userEmail" placeholder="电子邮件地址">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" placeholder="密码">
+            </div>
+            <div class="phone">
+                <select class="form-control" id="pho1">
+                    <option value="1">86</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input class="form-control" type="text" placeholder="请输入电话号码" id="pho2">
+            </div>
+            <div class="form-group birth">
+                <input class="form-control" type="text" placeholder="出生日期" readonly>
+                <input type="text" class="form-control" id="birthYear" placeholder="YYYY">
+                <input type="text" class="form-control" id="birthMonth" placeholder="MM">
+                <input type="text" class="form-control" id="birthDay" placeholder="DD">
+            </div>
+            <div class="gender">
+                <select class="form-control" placeholder="xb" id="gender">
+                    <option disabled selected hidden value="0">性别</option>
+                    <option value="1">男性</option>
+                    <option value="2">女性</option>
+                </select>
+            </div>
+            <div class="reg">
+                <button type="submit" class="btn btn-default btn1">注册</button>
+            </div>
+        </form>
+    </div>
+    <script src="/libs/require/require.min.js" data-main="/js/register"></script>
+</body>
+</html>

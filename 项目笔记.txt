@@ -1,0 +1,166 @@
+-项目初始化流程：
+-1.npm init 建package.json文件
+-2.npm install gulp 下载gulp文件
+-3.src文件下建html、css、images、js、libs文件夹
+-4.建gulpfile.js文件
+
+项目要求：
+首页、登录、注册、详情、购物车、列表
+sass写样式，所有css文件后缀都为scss
+页面太长了就只写部分
+购物车必须有放大镜功能
+写静态页时：
+    头部、尾部等重复模块只写一次，后面复用
+    下拉菜单不写，轮播图不写（只用一张图片代替）
+    商品数据来自数据库，先写重复商品图片
+
+
+jquery放压缩包到libs，或用npm安装
+gulp下载sass插件
+sass需要用npm install安装，用apache打开。sass是强化 CSS 的辅助工具，是预编译器。
+“.gitignore”文件，这个文件的作用就是告诉Git哪些文件不需要添加到版本管理中。
+    比如一般不将node_modules推送到仓库。
+
+需要用的技术：
+静态页:html,css + sass
+登录页：php+apache+gulp/localstorage+cookie
+轮播图:swiper   需要引入css和js文件
+数据：1、json 2、mock.js假数据 3、从端口获取数据
+购物车:localStorage
+重置样式：github找别人的reset css代码
+浏览器ico图：ico51生成ico图片
+模块化技术：
+    1.require.js    JavaScript模块加载器     可以省去对应index引入的js在html的引入
+                                            require在js中引入的js模块可以在html中省略引入
+    2.art-tamplate  简约的模板引擎  使我们可以使用{{}}语法
+
+项目流程：
+写静态页->搭模块化结构->配config.js->引入轮播图swiper->引入后端数据->写购物车
+
+学到的知识：
+下载amibug网址：https://github.com/amibug/fly
+使浏览器打开时大小为百分百的代码：<meta name="viewport" content="width=device-width, initial-scale=1">
+设置浏览器地址栏小图标的代码：<link rel="shortcut icon" href="/images/favicon.ico">
+快捷键： alt+b 运行到浏览器
+        shift+alt+f 格式化代码
+模板里面最好不要定义变量 在js中定义
+注意路径使用绝对路径。
+---------------------------------------------------------------------------------------------
+模块化流程：
+1、将需要的部分html、css分离到另一个html、css文件。
+  相应html添加header、footer标签，引入css。
+2、建相应的js文件,define代码，并在里面写加载，返回一个对象。
+3、config中require引入需要的js, 引入art-template的template.js。
+4、全局html引入require.js,其中的data-main引入相应的主js(如index.html对应index.js)。
+5、全局js require引入config，调用对象。
+
+需要新建三个js文件header.js, config.js,index.js,一个html文件header.html,还需要require.min.js，art-template。
+复用模块的header.js,header.html,header.scss都放在modules里面
+require用于js模块复用，art-template 模板引擎用于html模块化的使用。
+引入require时的data-main里面可以不写后缀。
+require接收返回值时是按顺序的，之前的参数没有返回值要设个变量占位，或者将有返回值的参数拿到前面。
+----------------------------------------------------------------------------------------------
+ const {
+        list
+            } = resp.body// 模板里所需要的数据和从后端拿到的数据变量名一致的时候对象才可以这么写
+-------------------------------
+利用接口渲染的步骤：
+            配置server服务器，方便跨域请求
+            index.js中发送get请求获取数据
+            html中将要要外部数据的代码放到后面的script中
+            html中只留一个li，用each循环获得list中的数据渲染，格式见代码
+            下载template,config中配置，require引入template
+-------------------------------
+// 制定server任务：开启一个本地node服务器
+const server = () => {
+  connect.server({
+    root: 'dist',
+    port: 2000,
+    livereload: true,
+    middleware () {
+      return [  /* 可能返回多个中间键 */
+        // 把前端以api开头的请求代理到拼多多    跨域需要安装middleware插件
+        createProxyMiddleware('/api', { /* 以/api开头的网址就代理到拼多多这个域 */
+                                        /* get请求的网址为拼多多xhr网址 删掉/api前面的部分
+                                          问号后面的数据写到后面的花括号中 */
+                                          /* 熊猫优选的数据不用跨域就可以用 */
+          target: 'https://apiv2.pinduoduo.com',/* 找网站的xhr的headers 有api开头的网址 */
+          changeOrigin: true
+        })
+      ]
+    }
+  })
+}
+----------------------------------------
+gulpfile中：
+gulpfile中写了方法，最后还需要export导出。
+watch：监听文件改变，当文件发生修改可以重启对应的任务。
+parallel：异步执行任务
+series：同步执行任务
+导出defult这一个任务，在这个任务里先同步执行删除dist的任务，再异步的执行其他任务
+module.exports.default = gulp.series(delDist, gulp.parallel(html, css, js, libs, imgs, apis , server, watch))
+----------------------------------------
+gulpfile的相应插件配置：
+  npm i gulp-cli -g   全局安装gulp
+  npm init -y         项目初始化
+  npm i gulp -D       当前项目局部安装gulp
+  gulp -v             查看gulp版本
+  npm i gulp-htmlmin -D 压缩html的插件->gulp html 执行压缩html的任务（html为方法名）
+  npm i gulp-clean-css -D 压缩css的插件->gulp css 执行压缩css的任务
+  npm i gulp-autoprefixer -D 给需要兼容的css样式自动加兼容前缀
+  npm i gulp -uglify -D 压缩js的包->gulp js 执行压缩js的任务
+  npm i gulp-babel @babel/core @babel/preset-env -D 三个转ES5、ES6的包
+  ->gulp libs 执行压缩libs的任务
+  ->gulp imgs 执行压缩imgs的任务
+  npm i del -D 删除dist的包 （不装del的话，某文件重命名了会再用来基础上增加改名后的文件）
+  npm i gulp-connect -D 连接服务器的包（如果项目要上线则不用-D）
+                        server中设置服务器的端口号，浏览器打开localhost：端口号。
+  npm i http-proxy-middleware   装跨域请求的包(中间件)
+
+关于css压缩需要注意：
+  压缩时加.pipe(sass())  
+  文件转换源路径改为.scss
+
+装sass：
+npm i node-sass gulp-sass -D
+
+每次改了gulp没有监听的文件时，都需要重新gulp一次。
+----------------------------------------
+注意：
+一个项目中不能引入两个jquery。
+load为异步方法，应该写在回调里面。
+template里面的注释比较特别，一般注释会影响其他内容，所以一般不在里面写注释。
+在面向对象中没有全局变量这个概念。要将变量在多个方法中都能用，则用this。
+在用模板引擎时，table里面只应该出现特定标签，出现script不合适。
+localstorage是以字符串存储的。
+隐藏一行中过长的文字：
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+header以外的其他html的js的constructor已经require了header的js后就
+不必再去调用里面的方法了（promise中，其他里面还未知？？？）
+不然点击一下会执行两次header.js中的代码。
+
+下拉框设置提示信息,并且不显示提示信息：
+<option disabled selected hidden>性别</option>
+
+设置文本框只读：
+<input class="form-control" type="text" placeholder="请输入电话号码" readonly>
+
+-------------------------------
+前端获得数据有三种方法：
+1、本地json
+2、mock.js或者rap2假数据。
+3、网页请求，找代理接口。
+-------------------------------
+页面之间的跳转需要有关联，方法有两种：
+1、a标签中用？后面跟数据。
+2、a标签用# 哈希值。
+-------------------------------
+问题：
+什么时候需要垫片？？
+异步 promise 箭头函数？？
+为什么要写一个loadHTML？？？
+什么时候是异步请求，需要用promise？？
+reduce方法？？

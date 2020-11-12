@@ -1,0 +1,1 @@
+"use strict";require.config({baseUrl:"/",paths:{swiper:"libs/swiper/js/swiper.min",template:"libs/art-template/template-web",jquery:"libs/jquery-3.5.1.min",header:"js/modules/header",footer:"js/modules/footer",elevateZoom:"libs/jquery/jquery.elevateZoom-3.0.8.min",fly:"libs/jquery-plugins/jquery.fly"},shim:{fly:{deps:["jquery"]},elevateZoom:{deps:["jquery"]}}});

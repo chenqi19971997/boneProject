@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>      <!-- 本页使用jquery、bootstrap -->
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css"><!-- 是css 不是scss -->
+    <script src="/libs/jquery-3.5.1.min.js"></script>
+    <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/modules/footer.css">
+</head>
+<body>
+    <header>
+        <a href="/index.html" class="a1"></a>       
+    </header>
+    <div class="topmain">
+        <div class="top">
+            登录
+        </div>
+        <form>
+            <div class="form-group">
+                <!-- <label for="exampleInputEmail1">Email address</label> -->
+                <input type="email" class="form-control " id="username" placeholder="电子邮件地址">
+            </div>
+            <div class="form-group">
+                <!-- <label for="exampleInputPassword1">Password</label> -->
+                <input type="password" class="form-control " id="password" placeholder="密码">
+            </div>
+            <div class="line">
+                <div class="seven">
+                    <input type="checkbox" class="sen"><span>七天免登录</span>
+                </div>
+                <div class="forget">
+                    <a href="">忘记您的密码？</a>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default btn1">登录</button>
+            <button type="submit" class="btn btn-default btn2"><a href="/html/register.html" style="color: black;">注册</a></button>
+        </form>
+    </div>
+     <script src="/libs/require/require.min.js" data-main="/js/login"></script>
+     <!-- 使用require后 实现模块化 不再需要其他引入 -->
+     <script src="/libs/utils.js"></script>
+</body>
+</html>

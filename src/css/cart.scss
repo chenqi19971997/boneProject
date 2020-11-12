@@ -1,0 +1,510 @@
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+    border: none;
+}
+
+/* css */
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #444;
+    // background: url(/images/home/hhh.jpg) left no-repeat;
+    // background-size: 100% 100%;
+}
+
+/* 样式 */
+/* 框架模板 */
+@mixin toptop($height, $backColor:yellow) {
+    width: 100%;
+    height: $height;
+    // background-color: $backColor;
+    background-color: #ffffff;
+    /* 将背景颜色全部取消自设定 */
+
+    & .main {
+        width: 1200px;
+        height: $height;
+        // border: 1px solid;
+        margin: 0 auto;
+    }
+}
+
+/* top1 */
+.top1 {
+    @include toptop(114px, orange);
+    margin-top: 60px;
+
+}
+
+.top1 .main {
+    h1 {
+        width: auto;
+        margin: 40px 0 20px;
+        padding: 0 0 9px;
+        border-bottom: 3px solid #eee;
+    }
+}
+
+/* check */
+.check {
+    @include toptop(40px, yellow);
+
+    .main {
+        input {
+            float: left;
+            margin: 0;
+        }
+
+        .ft {
+            margin-left: 5px;
+            float: left;
+            font-size: 14px;
+            line-height: 14px;
+        }
+    }
+}
+
+/* top2 */
+.top2 {
+    // @include toptop(500px, yellow); //133
+    width: 100%;
+    background-color: #ffffff;
+    min-height: 1000px;
+    overflow: auto;
+    & .main {
+        width: 1200px;
+        // border: 1px solid;
+        margin: 0 auto;
+    }
+
+    .main {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        // background-color: yellow;
+        .good {
+            height: 133px;
+            margin-top: 10px;
+
+            .checkhh {
+                float: left;
+                margin-top: 60px;
+                margin-right: 10px;
+            }
+
+            img {
+                // width: 204px;
+                width: 189px;
+                height: 100%;
+                // padding: 0 56px 0 15px;
+                padding: 0 56px 0 0;
+                // background: url(/images/home/12.jpg) no-repeat;
+                // background-size: 133px 133px;
+                // background-color: white;
+                float: left;
+            }
+
+            .center {
+                width: 615px;
+                height: 76px;
+                padding: 7px 15px;
+                // background-color: pink;
+                float: left;
+
+                span {
+                    display: block;
+                    width: 585px;
+                    height: 19px;
+                    margin: 0 0 10px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: black;
+                }
+
+                dt {
+                    width: 585px;
+                    height: 16px;
+                    font-size: 12px;
+                }
+
+                dd {
+                    width: 585px;
+                    height: 16px;
+                    font-size: 12px;
+                }
+            }
+
+            .right1 {
+                width: 204px;
+                height: 100%;
+                // background-color: white;
+                float: left;
+
+                .top {
+                    padding: 0 15px;
+
+                    span {
+                        display: block;
+                        width: 34px;
+                        height: 34px;
+                        font-size: 12px;
+                        // padding: 0 11px;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        text-align: center;
+                        line-height: 34px;
+                        color: white;
+                        float: left;
+                    }
+
+                    input {
+                        width: 34px;
+                        height: 34px;
+                        font-size: 12px;
+                        // padding: 0 11px;
+                        //  background-color: rgba(0, 0, 0, 0.6);
+                        text-align: center;
+                        line-height: 34px;
+                        float: left;
+                    }
+                }
+
+                .bot {
+                    span {
+                        display: block;
+                        position: absolute;
+                        width: 204px;
+                        height: 20px;
+                        padding: 0 15px;
+                        margin-top: 113px;
+                        font-size: 14px;
+                        color: #444;
+                    }
+                }
+            }
+
+        }
+
+        .right2 {
+            // width: 204px;
+            width: 150px;
+            height: 100%;
+            // background-color: skyblue;
+            float: right;
+
+            .top {
+                width: 150px;
+                height: 34px;
+
+                span {
+                    display: block;
+                    width: 34px;
+                    height: 34px;
+                    font-size: 12px;
+                    background-color: #eee;
+                    text-align: center;
+                    line-height: 34px;
+                    color: #444;
+                    float: right;
+                }
+
+                span:nth-child(2) {
+                    background: url(/images/edit.png) no-repeat center center;
+                    background-size: 34px 34px;
+                }
+
+                span:nth-child(1) {
+                    background: url(/images/del.png) no-repeat center center;
+                    background-size: 34px 34px;
+                }
+            }
+
+            .bot {
+                width: 150px;
+                height: 20px;
+
+                // padding: 0 15px;
+                //  position: absolute;
+                span {
+                    display: block;
+                    width: 204px;
+                    height: 20px;
+                    font-size: 14px;
+                    line-height: 20px;
+                    text-align: right;
+                    color: #444;
+                    float: right;
+                    margin-top: 79px;
+
+                }
+            }
+        }
+    }
+
+    // display: none;
+}
+
+/*  */
+.cart-empty {
+    @include toptop(500px, yellow);
+    width: 100%;
+    height: 500px;
+    // background-color: #0070c9;
+}
+
+.line {
+    @include toptop(15px, pink);
+
+    .main {
+        border-bottom: 1px solid #ccc;
+    }
+
+}
+
+/* top3 */
+.top3 {
+    @include toptop(326px, pink);
+    margin-top: 20px;
+    position: relative;
+
+    // background-color: yellow;
+    .main {
+        width: 1230px;
+
+        .left {
+            width: 377px;
+            height: 326px;
+            // background-color: skyblue;
+            float: left;
+            margin-left: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+            .top {
+                width: 375px;
+                height: 38px;
+                padding: 10px 15px;
+                background-color: #f5f5f5;
+                border-radius: 5px 5px 0 0;
+                border-bottom: 1px solid #ccc;
+
+                h3 {
+                    margin: 0;
+                    display: block;
+                    width: 347px;
+                    height: 17px;
+                    font-size: 16px;
+                    color: #333;
+                }
+            }
+
+            .bot {
+                padding: 15px;
+                width: 377px;
+                height: 286px;
+                border-top: 1px solid #eee;
+
+                @mixin country {
+                    width: 347px;
+                    height: 59px;
+                    margin: 0 0 15px;
+                    color: #777;
+
+                    span {
+                        display: block;
+                        width: 78px;
+                        height: 20px;
+                        margin: 0 0 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+
+                    select {
+                        width: 347px;
+                        height: 34px;
+                        padding: 6px 12px;
+                        border-radius: 5px;
+                    }
+                }
+
+                .country {
+                    @include country();
+                }
+
+                .province {
+                    @include country();
+
+                }
+
+                .number {
+                    @include country();
+
+                    input {
+                        width: 347px;
+                        height: 34px;
+                        padding: 6px 12px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    background-color: #eee;
+                }
+            }
+
+        }
+
+        .send {
+            width: 377px;
+            height: 111px;
+            // background-color: #0070c9;
+            float: left;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 545px;
+            display: none;
+
+            li {
+                height: 37px;
+                padding: 8px;
+                border-bottom: 1px solid #ccc;
+
+                span:nth-child(1) {
+                    display: block;
+                    float: left;
+                }
+
+                span:nth-child(1) {
+                    display: block;
+                    float: right;
+                }
+            }
+
+            li:nth-child(1) {
+                color: #444;
+                font-weight: bold;
+            }
+
+            li:nth-child(3) {
+                border: none;
+            }
+        }
+
+        .right {
+            width: 379px;
+            // height: 179px;
+            height: 100%;
+            // background-color: yellow;
+            float: right;
+            position: relative;
+
+            /* 加了position就不能右浮动了？？？ */
+            .num {
+                width: 379px;
+                height: 34px;
+                margin-bottom: 15px;
+
+                span {
+                    display: block;
+                    width: 67px;
+                    height: 34px;
+                    padding: 6px 12px;
+                    background-color: #eee;
+                    float: left;
+                }
+
+                input {
+                    width: 312px;
+                    height: 34px;
+                    padding: 6px 12px;
+                    background-color: #fff;
+                }
+            }
+
+            @mixin price {
+                width: 379px;
+                height: 20px;
+                color: #444;
+                clear: both;
+
+                .div1 {
+                    width: 253px;
+                    height: 20px;
+                    margin: 5px 0;
+                    font-size: 14px;
+                    float: left;
+                }
+
+                .div2 {
+                    width: 126px;
+                    height: 20px;
+                    margin: 5px 0;
+                    font-size: 14px;
+                    float: right;
+                    text-align: right;
+                }
+            }
+
+            .price {
+                @include price()
+            }
+
+            .line {
+                width: 379px;
+                height: 6px;
+                margin: 5px 0 0;
+                padding: 5px 0 0;
+                border-top: 1px solid #e5e5e5;
+            }
+
+            .totle {
+                @include price();
+                font-weight: bold;
+            }
+
+            button {
+                width: 379px;
+                background-color: #0070c9;
+                padding: 6px 12px;
+                position: absolute;
+                left: 0;
+                top: 120px;
+            }
+            #chart{
+                width: 379px;
+                height: 160px;
+                // background-color: yellow;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+            }
+        }
+    }
+}

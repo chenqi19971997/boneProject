@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 本页使用jquery、bootstrap -->
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/cart.css"><!-- 是css 不是scss -->
+    <script src="/libs/jquery-3.5.1.min.js"></script>
+    <script src="/libs/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/modules/header.css">
+    <link rel="stylesheet" href="/css/modules/footer.css">
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <div class="top1">
+        <div class="main">
+            <h1>购物车</h1>
+        </div>
+    </div>
+    <div class="check  shopping_car">
+        <div class="main">
+            <input type="checkbox" id="checkAll">
+            <div class="ft">全选</div>
+        </div>
+    </div>
+    <div class="top2 shopping_car">
+        <div class="main" id="goods">
+            <!-- <img src="{{item.photo[0].url}}" alt=""> -->
+            <!-- <img src="{{item.image}}" alt=""> -->
+            <script type="text/html" id="goodsTemplate">
+                {{each cart item}}
+                <div class="good" data-id="{{item.id}}">
+                    <input type="checkbox" class="checkhh" {{item.check?'checked':''}}>
+                    <img src="{{item.image}}" alt="">
+                    <div class="center">
+                        <span>{{(item.title).slice(0,20)}}...</span>
+                        <dl>
+                            <dt>
+                                款式：
+                            </dt>
+                            <dd>
+                                1x{{(item.title).slice(0,20)}}...
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="right1">
+                        <div class="top">
+                            <span class="sub">-</span> <!-- 不能设为a标签 不然会一点就跳 -->
+                            <input type="text" value="{{item.count}}" class="countNum">
+                            <span class="add">+</span>
+                        </div>
+                        <div class="bot">
+                            <span>
+                                价格：￥{{item.price}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="right2">
+                        <div class="top">
+                            <span class="del"></span>
+                            <span class="edit"></span>
+                        </div>
+                        <div class="bot">
+                            <span class="littlePrice">
+                                小计：￥{{item.price}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </script> <!--  -->
+        </div>
+    </div>
+    <!-- 空购物车 -->
+    <div class="cart-empty">
+        <div class="main">
+            您的购物车内没有物品。<br>
+            单击<a href="/html/class.html">这里</a>来继续购物。
+        </div>
+    </div>
+    <div class="line">
+        <div class="main">
+
+        </div>
+    </div>
+    <div class="top3">
+        <div class="main">
+            <div class="left">
+                <div class="top">
+                    <h3>运费估算</h3>
+                </div>
+                <div class="bot">
+                    <div class="country">
+                        <span>
+                            国家或地区
+                        </span>
+                        <select name="" id="country">
+                            <option value="1">中国</option>
+                            <option value="2">美国</option>
+                            <option value="3">法国</option>
+                            <option value="4">意大利</option>
+                            <option value="5">日本</option>
+
+                        </select>
+                    </div>
+                    <div class="province">
+                        <span>
+                            州/省
+                        </span>
+                        <select name="" id="province">
+                            <option value="0">请选择地区、州，或省</option>
+                            <option value="1">四川省</option>
+                            <option value="2">北京</option>
+                            <option value="3">新疆</option>
+                        </select>
+                    </div>
+                    <div class="number">
+                        <span>
+                            邮政编码
+                        </span>
+                        <input type="text" id='sendNum'>
+                    </div>
+                    <button type="submit" class="btn btn-default btn1 getPrice">获得报价</button>
+                </div>
+            </div>
+            <ul class="send">
+                <li><span>运送方式</span><span>价格</span></li>
+                <li><span>中通快递</span><span id='sendPrice1'>￥20.00</span></li>
+                <li><span>顺丰速运</span><span id='sendPrice2'>￥40.00</span></li>
+            </ul>
+            <div class="right">
+                <div class="num">
+                    <span>折扣券</span>
+                    <input type="text" placeholder="选择优惠券或输入折扣码">
+                </div>
+                <div class="price">
+                    <div class="div1">
+                        小计
+                    </div>
+                    <div class="div2" id="totalPrice1">
+                        ￥79.00
+                    </div>
+                </div>
+                <div class="line">
+
+                </div>
+                <div class="totle">
+                    <div class="div1">
+                        总计
+                    </div>
+                    <div class="div2" id="totalPrice2">
+                        ￥79.00
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default btn1">进行结账</button>
+                <!-- 图表 -->
+                <div id="chart"></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+    <script src="/libs/require/require.min.js" data-main="/js/cart"></script><!-- 不需要写后缀名 -->
+</body>
+<!-- 图表 -->
+<script type="text/javascript">
+    // var echarts = require('echarts')
+    // import echarts from 'echarts'
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('chart'));
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '历史消费'
+        },
+        tooltip: {},
+        legend: {
+            data: ['数量']
+        },
+        xAxis: {
+            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [{
+            name: '数量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title></title><link rel="shortcut icon" href="/images/favicon.ico"><link rel="stylesheet" href="/libs/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" href="/css/details.css"><script src="/libs/jquery-3.5.1.min.js"></script><script src="/libs/bootstrap/js/bootstrap.min.js"></script><script src="/libs/jquery/jquery.elevateZoom-3.0.8.min.js"></script><link rel="stylesheet" href="/css/modules/header.css"><link rel="stylesheet" href="/css/modules/footer.css"></head><body><header></header><div class="top1"><div class="main"><div class="ft"><a href="">商品分类</a> <a href="">/生活用品</a> <a href="">/环保饮料杯绑</a></div></div></div><div class="top2"><div class="main" id="design"></div><script type="text/html" id="designTemplate"><div class="left">
+                <div class="depic">
+                    <img src="{{photo[0].url}}" class="zoom-image">
+                    <div class="imgs">
+                        <ul id="gal1">
+                            {{each photo img}}
+                            <li>
+                                <a href="javascript:;" data-image="{{img.url}}">
+                                    <img src="{{img.url}}" class="smallpic">
+                                </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="top">
+                    <div class="line1">
+                        {{(title).slice(0,15)}}...
+                    </div>
+                    <div class="line2">
+                        发表首篇评论
+                    </div>
+                    <div class="line3">
+                        弹性硅胶绑带，兼容市售350ml到750ml饮料杯。<br>
+                        吸管环设计，粗/细吸管都可牢牢套住。<br>
+                        简约轻巧随身带，使用好方便。<br>
+                        硅胶材质可水洗，污渍不残留。<br>
+                        可爱萌角色/个性简约风，随心变换风格。<br>
+                    </div>
+                </div>
+                <div class="bot">
+                    <div class="line1">
+                        开始于:￥{{originPrice}}
+                    </div>
+                    <div class="line2">
+                        <div class="k1">
+                            款式：*
+                        </div>
+                        <div class="k2">
+                            <ul>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                                <li><a href=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="line3">
+                        <div class="k1">
+                            预配置价格：
+                        </div>
+                        <div class="k2">
+                            ￥{{price}}
+                        </div>
+                    </div>
+                    <div class="line4">
+                        <div class="k1">
+                            数量
+                        </div>
+                        <div class="k2">
+                            <a href="">-</a>
+                            <input type="text" placeholder="1">
+                            <a href="">+</a>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <a type="submit" class="btn btn-default btn1" href="/html/cart.html">立即结账</a>
+                        <button type="submit" class="btn btn-default btn2">添加到购物车</button>
+                        <button type="submit" class="btn btn-default btn4">❤</button>
+                    </div>
+                </div>
+            </div></script><div id="cart"><span></span></div></div><div class="top3"><div class="main"><a href="">特色</a> <a href="">规格</a> <a href="">问题</a> <a href="">评论</a></div></div><div class="top4"><div class="main"><div class="img1"></div></div></div><div class="top5"><div class="main"></div></div><footer></footer><script src="/libs/require/require.min.js" data-main="/js/details"></script></body></html>

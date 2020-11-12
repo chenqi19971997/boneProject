@@ -1,0 +1,336 @@
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+    border: none;
+}
+
+/* css */
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    font-size: 14px;
+    color: #444;
+
+}
+
+/* 框架模板 */
+@mixin toptop($height, $backColor:yellow) {
+    width: 100%;
+    height: $height;
+    // background-color: $backColor;
+    background-color: #f4f4f4;
+    /* 将背景颜色全部取消自设定 */
+
+    & .main {
+        width: 1200px;
+        height: $height;
+        // border: 1px solid;
+        margin: 0 auto;
+    }
+}
+
+/* top1 */
+.top1 {
+    @include toptop(527px, orange);
+    background: url(/images/home/pink.jpg) left no-repeat;
+    background-size: 100% 100%;
+    margin-top: 60px;
+}
+
+/* top2 */
+.top2 {
+    @include toptop(60px, yellow);
+
+    .main {
+        position: relative;
+        .left {
+            width: 153px;
+            height: 27px;
+            float: left;
+            // background-color: white;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            margin: auto 0;
+            .div1 {
+                width: 62px;
+                height: 27px;
+                float: left;
+                line-height: 27px;
+                text-align: center;
+                border-right: 1px solid #ccc;
+                font-size: 14px;
+                color: #555;
+            }
+
+            .div2 {
+                width: 62px;
+                height: 27px;
+                line-height: 27px;
+                text-align: center;
+                float: left;
+                font-size: 14px;
+                color: #555;
+            }
+        }
+
+        .right {
+            width: 88px;
+            height: 27px;
+            float: right;
+            padding: 2px 0;
+            // background-color: white;
+            position: absolute;
+             top:0;
+             bottom: 0;
+             right: 0;
+             margin: auto 0;
+            .div1 {
+                line-height: 27px;
+                text-align: center;
+                // border-right: 1px solid #ccc;
+                font-size: 14px;
+                color: #555;
+            }
+        }
+    }
+}
+
+/* top3 */
+.top3 {
+    @include toptop(2000px, orange);
+    flex: 1;
+    // overflow: auto;
+    padding: 48px 0;    /* 怎样隐藏滚动条？？ */
+    border-top: 1px solid #ccc;
+    .main{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 1300px;
+    }
+    .good{
+        width: 307px;
+        height: 467px;
+        padding: 30px 15px 0;
+        color: #444;
+        background-color: white;
+        margin-bottom: 20px;
+        img{
+            // position: absolute;
+            width: 277px;
+            height: 277px;
+            // background: url(/images/home/g6.jpg) left no-repeat;
+            // background-size: 277px 277px;
+            margin-bottom: 10px;
+            // top:0;
+            // left:0;
+        }
+        .info1{
+            width: 277px;
+            height: 47px;
+            padding: 0 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+        }
+        .info2 {
+            width: 277px;
+            height: 20px;
+            margin: 4px 0 0;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 20px;
+            color: #555;
+            text-align: center;
+            span:nth-child(1){
+                color: #f80000;
+            }
+            span:nth-child(2) {
+                text-decoration: line-through;
+            }
+        }
+        .info3 {
+            width: 277px;
+            height: 34px;
+            margin: 14px 0 0;
+            font-size: 14px;
+            color: #444;
+            .center{
+                width: 110px;
+                height: 34px;
+            position: relative;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                select {
+                    width: 52px;
+                    height: 34px;
+                    // padding: 6px 24px 6px 12px;
+                    padding: 0;
+                    float: left;
+                    border-radius: 5px 0 0 5px;
+                }
+
+                .add {
+                    width: 58px;
+                    height: 34px;
+                    float: left;
+                    border-radius: 0 5px 5px 0;
+                    color: white;
+                    background: url(/images/blue.png) no-repeat center center;
+                    background-size: 15px 15px;
+                     background-color: #0070c9;
+
+                }
+            }
+            
+        }
+    }
+}
+
+/* top4 */
+@mixin top4 {
+    @include toptop(367px, skyblue);
+    padding: 48px 0;
+    border-top: 1px solid #ccc;
+    .main{
+        .top{
+            height: 43px;
+            padding: 0 0 15px;
+            .a1 {
+                font-size: 25px;
+                font-weight: bold;
+                line-height: 55px;
+                color: #444444;
+                float: left;
+            }
+
+            div {
+                float: right;
+                width: 20px;
+                height: 8px;
+                top: 0;
+                bottom: 0;
+                margin: auto 0;
+                /* 怎么设居中？？ */
+                display: flex;
+                justify-content: space-between;
+                // background-color: yellow;
+                margin-top: 25px;
+
+                span {
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                }
+
+                span:nth-child(1) {
+                    background-color: #28292c;
+                }
+
+                span:nth-child(2) {
+                    background-color: #ccc;
+                }
+            }
+        }
+        .bot ul{
+            width: 100%;
+            height: 236px; 
+            display: flex;
+            // justify-content: space-between;
+            overflow: hidden;
+            li {
+                width: 187px;
+                height: 236px;
+                background: url(/images/home/g3.jpg) left top no-repeat;
+                background-size: 187px 187px;
+                background-color: white;
+                position: relative;
+                margin-left: 15px;
+                a {
+                    color: #28292c;
+                    display: block;
+                    width: 187px;
+                    height: 39px;
+                    padding: 39px;
+                    position: absolute;
+                    bottom: 0;
+                    font-size: 15px;
+                    font-weight: bold;
+                    line-height: 20px;
+                    flex-wrap: wrap;
+                    text-align: center;
+                    // background-color: skyblue;
+                }
+
+                span {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    position: absolute;
+                    top: 5px;
+                    left: 5px;
+                    background-color: #f0ad4e;
+                    text-align: center;
+                    line-height: 32px;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+.top4{
+    @include top4();
+}
+/* top5 */
+.top5 {
+    @include toptop(375px, pink);
+    @include top4();
+}
+
+#cart {
+    width: 50px;
+    height: 60px;
+    background-color: red;
+    position: fixed;
+    right: 0;
+    top: 300px;
+
+    span {
+        display: block;
+        width: 50px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        color: white;
+    }
+}
+.fly {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
