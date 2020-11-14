@@ -179,31 +179,33 @@ body {
 
                 .line2 {
                     width: 585px;
-                    height: 188px;
+                    height: 150px;
                     color: #444;
                     margin: 0 0 20px;
 
                     .k1 {
                         height: 20px;
-
                     }
 
                     .k2 {
                         height: 148px;
-
                         ul {
+                            margin-top: 10px;
                             display: flex;
                             justify-content: space-between;
                             flex-wrap: wrap;
-
                             li {
-                                width: 66px;
-                                height: 66px;
+                                width: 90px;
+                                height: 90px;
                                 background-color: #fff;
                                 margin: 0 8px 8px 0;
                                 border: 1px solid #ccc;
-                                background: url(/images/home/little.jpg) center center no-repeat;
-                                background-size: 58px 58px;
+                                // background: url(/images/home/little.jpg) center center no-repeat;
+                                // background-size: 58px 58px;
+                                img{
+                                    width: 90px;
+                                    height: 90px;
+                                }
                             }
                         }
                     }
@@ -244,7 +246,7 @@ body {
                         font-size: 24px;
                         margin: 8px 0 0;
 
-                        a {
+                        span {
                             display: block;
                             width: 34px;
                             height: 34px;
@@ -305,19 +307,27 @@ body {
     }
 }
 #cart{
+    display: block;
     width: 50px;
     height: 60px;
-    background-color: red;
+    background: url(/images/gouwuche.png) no-repeat;
+    background-size: 50px 50px;
     position: fixed;
     right: 0;
     top: 300px;
     span{
         display: block;
-        width: 50px;
-        height: 60px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 14px;
         text-align: center;
-        line-height: 60px;
+        line-height: 20px;
         color: white;
+        background-color: #aaa;
+        position: absolute;
+        top: -10px;
+        right:3px;
     }
 }
 .fly{

@@ -78,6 +78,7 @@ require(['./config'], () => {
                 // 获取rap2假数据来渲染
                 $.get('http://rap2api.taobao.org/app/mock/268738/api/index/list', resp => {
                     // console.log(resp)
+                    // Access-Control-Allow-Origin
                     if (resp.code === 200) {
                         const {
                             list

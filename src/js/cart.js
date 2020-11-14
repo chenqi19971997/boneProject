@@ -1,5 +1,5 @@
 require(['./config'], () => {
-    require(['template', 'header', 'footer'], (template,header) => {
+    require(['template', 'header', 'footer'], (template, header) => {
         class Index {
             constructor() {
                 this.render()
@@ -54,7 +54,8 @@ require(['./config'], () => {
             }
             addSubCount() {
                 const _this = this
-                $('.sub').on('click', function () {
+                console.log(this);
+                $('.sub').on('click', function () {     /* TODO：第一次点的时候会加2？？？ */
                     const id = $(this).parents('.good').data('id') /* data中的id为字符串，要加引号 */
                     console.log(id, '...')
                     _this.cart = _this.cart.map(shop => {
@@ -69,6 +70,7 @@ require(['./config'], () => {
                     localStorage.setItem('cart', JSON.stringify(_this.cart))
                     _this.render()
                     _this.calcTotalMoney()
+                    header.calcCartCount()
                 })
                 $('.add').on('click', function () {
                     const id = $(this).parents('.good').data('id')
@@ -82,6 +84,7 @@ require(['./config'], () => {
                     localStorage.setItem('cart', JSON.stringify(_this.cart))
                     _this.render()
                     _this.calcTotalMoney()
+                    header.calcCartCount()
                 })
                 /* 直接输入数量 */
                 $('.countNum').on('change', function () {
@@ -91,13 +94,14 @@ require(['./config'], () => {
                     console.log(id, '...')
                     _this.cart = _this.cart.map(shop => {
                         if (shop.id === id) {
-                            shop.count = value-0
+                            shop.count = value - 0
                         }
                         return shop
                     })
                     localStorage.setItem('cart', JSON.stringify(_this.cart))
-                    // _this.render()
-                    _this.calcTotalMoney()  /* 编辑后刷新才能更新购物车数量？？？ */
+                    _this.render()
+                    _this.calcTotalMoney() /* 编辑后刷新才能更新购物车数量？？？ */
+                    header.calcCartCount()
                 })
                 /* 删除商品 */
                 $('.del').on('click', function () {
@@ -120,8 +124,9 @@ require(['./config'], () => {
                         }
                         return shop
                     })
-                    _this.render()  /* 不写这个不能删了后刷新？？？ */
+                    _this.render() /* 不写这个不能删了后刷新？？？ */
                     _this.calcTotalMoney()
+                    header.calcCartCount()
                 })
                 /* 编辑操作 */
                 $('.edit').on('click', function () {
@@ -132,7 +137,7 @@ require(['./config'], () => {
             /* 全选 */
             setAllCheckStatus() {
                 const isAllCheck = this.cart.every(shop => shop.check)
-                $('#checkAll').prop('checked', isAllCheck)  /* prop在这里设置属性 */
+                $('#checkAll').prop('checked', isAllCheck) /* prop在这里设置属性 */
             }
             /* 点击全选 */
             setCheckAll() {
@@ -178,7 +183,7 @@ require(['./config'], () => {
             }
             calSendPrice() {
                 $('.getPrice').on('click', function () {
-                    if ($('#province').val() == 0||$('#sendNum').val()=='') {
+                    if ($('#province').val() == 0 || $('#sendNum').val() == '') {
                         alert('所属省或邮政编码不能为空')
                     } else {
                         const country = $('#country').val() - 0
@@ -193,15 +198,15 @@ require(['./config'], () => {
                             if (province == 1) {
                                 sendPrice1 = 12
                                 sendPrice2 = 20
-                            }else{
+                            } else {
                                 sendPrice1 = 15
                                 sendPrice2 = 25
                             }
                         }
-                        console.log(sendPrice1,sendPrice2);
+                        console.log(sendPrice1, sendPrice2);
                         $('#sendPrice1').html('￥' + sendPrice1)
                         $('#sendPrice2').html('￥' + sendPrice2)
-                        $('.send').css('display','block')
+                        $('.send').css('display', 'block')
                     }
                 })
             }

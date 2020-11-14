@@ -19,5 +19,5 @@ define([
 
 
     }
-    return new Footer()
+    return new Footer() /* 为什么要return出去？？ */
 });

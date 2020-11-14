@@ -209,3 +209,47 @@ header {
 .displayMe{
     display: block;
 }
+
+/* 搜索框 */
+#search {
+    width: 150px;
+    height: 70px;
+    border-radius: 10px;
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    background-color: #fff;
+    display: none;
+    z-index: 999;
+
+    input {
+        width: 80%;
+        height: 25px;
+        border-radius: 5px;
+        padding: 8px;
+        font-size: 14px;
+        line-height: 14px;
+        color: #28292c;
+        // 隐藏一行中过长的文字
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: absolute;
+        top:10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    button {
+        width: 100px;
+        height: 25px;
+        border-radius: 5px;
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #eee;
+        outline: none;
+        border: 1px solid #ccc;
+    }
+}

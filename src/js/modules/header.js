@@ -10,6 +10,7 @@ define([
                 this.showBox()
                 this.goTop()
                 this.logOut()
+                this.searchBox()
             })
         }
         /* 加载页面 */
@@ -23,14 +24,15 @@ define([
             let cart = localStorage.getItem('cart')
             if (cart) {
                 cart = JSON.parse(cart)
-                count = cart.reduce((num, shop) => num + shop.count, 0)
+                count = cart.reduce((num, shop) => num + shop.count, 0) /* 需要return */
             }
             $('#shopnum').html(count)
-            $('#cart span').html(count)
             if (count < 100) {
                 $('#redCart').html(count)
+                $('#cart span').html(count)
             } else {
                 $('#redCart').html('n')
+                $('#cart span').html('n')
             }
         }
         showBox() {
@@ -69,7 +71,7 @@ define([
             // console.log('name:', name);
             if (name) {
                 // console.log('已登录');
-                $('#yourName').html('你好,'+name)
+                $('#yourName').html('你好,' + name)
                 $('.login').attr('href', '#')
                 $('.login').on('click', function () {
                     console.log('点击了');
@@ -78,11 +80,13 @@ define([
                     // } else {
                     //     $('.ImOut').addClass('displayMe')
                     // }
-                    $('.ImOut').slideToggle()    /* 上面代码的简化形式 */
+                    $('.ImOut').slideToggle() /* 上面代码的简化形式 */
                 })
                 $('#outting').on('click', function () {
                     // 清除cookie
-                    utils.removeCookie('name',{path:'/'})
+                    utils.removeCookie('name', {
+                        path: '/'
+                    })
                     $('.ImOut').hide()
                     $('.login').attr('href', '/html/login.html')
                     // location.replace('/html/login.html')
@@ -92,6 +96,18 @@ define([
                 $('.login').attr('href', '/html/login.html')
             }
         }
+        searchBox(){
+            $('#bigger').on('click', function (e) {
+                e.preventDefault();
+                console.log('点击了');
+                $('#search').slideToggle() /* 上面代码的简化形式 */
+            })
+            $('#searchButton').on('click',function(){
+                let searchValue = $('#searchInput').val()
+                console.log(searchValue);   
+                location.replace(`/html/class.html?id=7,value=`+searchValue)
+            })
+        }
     }
-    return new Header()/* ？？？ */
+    return new Header() /* ？？？ */
 });
