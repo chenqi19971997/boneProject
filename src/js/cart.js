@@ -33,7 +33,7 @@ require(['./config'], () => {
                     $('.shopping_car').css('display', 'none')
                     $('.cart-empty').css('display', 'block')
                 }
-                this.addSubCount() /* 渲染后重新调用，不然点一次就不能再点了 */
+                // this.addSubCount() /* 不能多次调用 不然会产生两次效果 */
             }
             calcTotalMoney() {
                 const allMoney = this.cart.reduce((money, shop) => {
@@ -55,7 +55,7 @@ require(['./config'], () => {
             addSubCount() {
                 const _this = this
                 console.log(this);
-                $('.sub').on('click', function () {     /* TODO：第一次点的时候会加2？？？ */
+                $('.sub').on('click', function () {
                     const id = $(this).parents('.good').data('id') /* data中的id为字符串，要加引号 */
                     console.log(id, '...')
                     _this.cart = _this.cart.map(shop => {
@@ -64,11 +64,11 @@ require(['./config'], () => {
                             if (shop.count <= 0) {
                                 shop.count = 1
                             }
+                            $(this).parents('.right1').find('.countNum').val(shop.count)
                         }
                         return shop
                     })
                     localStorage.setItem('cart', JSON.stringify(_this.cart))
-                    _this.render()
                     _this.calcTotalMoney()
                     header.calcCartCount()
                 })
@@ -78,11 +78,11 @@ require(['./config'], () => {
                     _this.cart = _this.cart.map(shop => {
                         if (shop.id === id) {
                             shop.count++
+                            $(this).parents('.right1').find('.countNum').val(shop.count)
                         }
                         return shop
                     })
                     localStorage.setItem('cart', JSON.stringify(_this.cart))
-                    _this.render()
                     _this.calcTotalMoney()
                     header.calcCartCount()
                 })
@@ -99,13 +99,14 @@ require(['./config'], () => {
                         return shop
                     })
                     localStorage.setItem('cart', JSON.stringify(_this.cart))
-                    _this.render()
-                    _this.calcTotalMoney() /* 编辑后刷新才能更新购物车数量？？？ */
+                    $(this).parents('.right1').find('.countNum').val(value)
+                    _this.calcTotalMoney()
                     header.calcCartCount()
                 })
                 /* 删除商品 */
                 $('.del').on('click', function () {
                     const id = $(this).parents('.good').data('id')
+                    $(this).parents('.good').css('display', 'none')
                     console.log("id:", id)
                     _this.cart = _this.cart.map(shop => {
                         if (shop.id === id) {
@@ -124,7 +125,7 @@ require(['./config'], () => {
                         }
                         return shop
                     })
-                    _this.render() /* 不写这个不能删了后刷新？？？ */
+                    // _this.render() 不能使用这种方法改变显示，会影响其他任务重新调用，只能通过display或者其他
                     _this.calcTotalMoney()
                     header.calcCartCount()
                 })
@@ -203,7 +204,7 @@ require(['./config'], () => {
                                 sendPrice2 = 25
                             }
                         }
-                        console.log(sendPrice1, sendPrice2);
+                        // console.log(sendPrice1, sendPrice2);
                         $('#sendPrice1').html('￥' + sendPrice1)
                         $('#sendPrice2').html('￥' + sendPrice2)
                         $('.send').css('display', 'block')
