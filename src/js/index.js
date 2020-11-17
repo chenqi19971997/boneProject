@@ -76,7 +76,7 @@ require(['./config'], () => {
             }
             getMyImages() {
                 // 获取rap2假数据来渲染
-                $.get('http://rap2api.taobao.org/app/mock/268738/api/index/list', resp => {
+                $.get('http://rap2api.taobao.org/app/mock/data/1767178', resp => {
                     // console.log(resp)
                     // Access-Control-Allow-Origin
                     if (resp.code === 200) {
@@ -90,12 +90,33 @@ require(['./config'], () => {
                         // console.log(list)
                         let $url = list[0].src
                         // console.log($url)
+                        // 
+                        $('.top6 .main div').css("background-image", "url(" + list[0].src2 + ")");
+                        $('.top8 .main div').css("background-image", "url(" + list[1].src2 + ")");
+                        $('.top10 .main div').css("background-image", "url(" + list[2].src2 + ")");
+                        $('.top12 .main div').css("background-image", "url(" + list[3].src2 + ")");
+                        $('.top14 .main div').css("background-image", "url(" + list[4].src2 + ")");
+                        $('.top16 .main div').css("background-image", "url(" + list[5].src2 + ")");
+                        // 
                         $('.top6 .main .left').css("background-image", "url(" + list[0].src + ")");
                         $('.top8 .main .left').css("background-image", "url(" + list[1].src + ")");
                         $('.top10 .main .left').css("background-image", "url(" + list[2].src + ")");
                         $('.top12 .main .left').css("background-image", "url(" + list[3].src + ")");
                         $('.top14 .main .left').css("background-image", "url(" + list[4].src + ")");
                         $('.top16 .main .left').css("background-image", "url(" + list[5].src + ")");
+                        // 
+                        $('.top6 .main .center a').html(list[0].word)
+                        $('.top6 .main .right a').html(list[0].word)
+                        $('.top8 .main .center a').html(list[1].word)
+                        $('.top8 .main .right a').html(list[1].word)
+                        $('.top10 .main .center a').html(list[2].word)
+                        $('.top10 .main .right a').html(list[2].word)
+                        $('.top12 .main .center a').html(list[3].word)
+                        $('.top12 .main .right a').html(list[3].word)
+                        $('.top14 .main .center a').html(list[4].word)
+                        $('.top14 .main .right a').html(list[4].word)
+                        $('.top16 .main .center a').html(list[5].word)
+                        $('.top16 .main .right a').html(list[5].word)
                     }
                 })
             }
