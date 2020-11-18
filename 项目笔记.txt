@@ -148,6 +148,10 @@ header以外的其他html的js的constructor已经require了header的js后就
 设置文本框只读：
 <input class="form-control" type="text" placeholder="请输入电话号码" readonly>
 
+拿到引用类型的值，而不复制他的地址：
+const {
+                    list
+                } = $.extend(true, {}, this.detail)
 -------------------------------
 前端获得数据有三种方法：
 1、本地json

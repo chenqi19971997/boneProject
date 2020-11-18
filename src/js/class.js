@@ -45,9 +45,6 @@ require(['./config'], () => {
                                 })
                             }
                             console.log(list);
-                            // this.detail = {
-                            //     list
-                            // }
                             _this.detail = $.extend(true, {}, {
                                 list
                             })
@@ -67,6 +64,7 @@ require(['./config'], () => {
                             console.log(list, 333);
                             // 销量排序
                             _this.saleFirst()
+                            _this.zhongHe()
                             resolve()
                         }
                     })
@@ -201,51 +199,46 @@ require(['./config'], () => {
                 // 第一页
                 $('#page1').on('click', function () {
                     _this.page = 1
-                    // _this.detail.list=list1
-                    // console.log(_this.detail.list,909090);
+                    _this.detail.list = list1
+                    console.log(_this.detail.list, 909090);
                     $('#list').html(
                         template('listTemplate', {
                             list: list1
                         })
                     )
                     $('html,body').scrollTop(0)
+                    _this.priceScreen() //换页之后重新调用 让这些函数拿到的list更新
+                    _this.priceFirst()
+                    _this.saleFirst()
+                    _this.zhongHe()
                 })
-                // 第一页的综合排序
-                $('#btn-class1').on('click', function () {
-                    $('#list').html(
-                        template('listTemplate', {
-                            list: list1
-                        })
-                    )
-                    $('html,body').scrollTop(0)
-                })
-                $('#btn-price3').on('click', function () {
-                    $('#list').html(
-                        template('listTemplate', {
-                            list: list1
-                        })
-                    )
-                    $('html,body').scrollTop(0)
-                })
+
                 // 第二页
                 $('#page2').on('click', function () {
                     _this.page = 2
-                    // _this.detail.list = list2
-                    // console.log(_this.detail.list, 909090);
+                    // console.log(_this,999000);
+                    _this.detail.list = list2
+                    console.log(_this.detail.list, 909090);
                     $('#list').html(
                         template('listTemplate', {
                             list: list2
                         })
                     )
                     $('html,body').scrollTop(0)
+                    _this.priceScreen() //换页之后重新调用 让这些函数拿到的list更新
+                    _this.priceFirst()
+                    _this.saleFirst()
+                    _this.zhongHe()
                 })
+                console.log(_this.detail, 777);
+                return _this.detail
             }
 
             priceScreen() {
-                console.log(this.detail,88888);
-                const {
+                let {
                     list
                 } = $.extend(true, {}, this.detail)
+                list=list.slice(0, 16)
                 // 筛选价格
                 // 10元以下
                 let priceList1 = list.filter(function (item) {
@@ -277,9 +270,10 @@ require(['./config'], () => {
             }
             // 价格排序
             priceFirst() {
-                const {
+                let {
                     list
                 } = $.extend(true, {}, this.detail)
+                list = list.slice(0, 16)
                 /* 排序 */
                 function sortByInt(array, key) {
                     return array.sort(function (b, a) {
@@ -301,9 +295,10 @@ require(['./config'], () => {
                 })
             }
             saleFirst() {
-                const {
+                let {
                     list
                 } = $.extend(true, {}, this.detail)
+                list = list.slice(0, 16)
                 /* 排序 */
                 function sortByInt(array, key) {
                     return array.sort(function (b, a) {
@@ -326,6 +321,28 @@ require(['./config'], () => {
                     $('#list').html(
                         template('listTemplate', {
                             list: list0
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+            }
+            zhongHe() {
+                const {
+                    list
+                } = $.extend(true, {}, this.detail)
+                // 第一页的综合排序
+                $('#btn-class1').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+                $('#btn-price3').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list
                         })
                     )
                     $('html,body').scrollTop(0)
