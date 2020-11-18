@@ -5,14 +5,14 @@ require(['./config'], () => {
                 this.getList().then(() => {
                     this.addToCart()
                     // header.showBox()     已经引入了header，就不必再去调用里面的方法了！！
-                    //                        不然点击一下会执行两次？？？
+                    //                        不然点击一下会执行两次
                     this.myLove()
                 })
             }
             getList() {
-                // const id = 2
                 let id = location.search.slice(4, 5) - 0
-                console.log(id);
+                // console.log(id);
+                const _this = this
                 return new Promise(resolve => {
                     $.get(`http://www.xiongmaoyouxuan.com/api/tab/${id}`, {
                         start: 0,
@@ -24,18 +24,18 @@ require(['./config'], () => {
                             search = true
                             searchValue = decodeURIComponent(location.search.slice(12))
                         }
-                        console.log(resp, '1111') /* 写加号会转为字符串 */
+                        // console.log(resp, '1111') /* 写加号会转为字符串 */
                         if (resp.code === 200) {
                             let {
                                 list
-                            } = resp.data.items /* ??? */
+                            } = resp.data.items /* es6解构赋值 */
                             /* 过滤掉没有销售数量的项 */
                             list = list.filter(function (item) {
                                 if (item.saleNum) {
                                     return item
                                 }
                             })
-                            console.log(list, '888');
+                            // console.log(list, '888');
                             // 判断是否搜索页
                             if (search) {
                                 list = list.filter(function (item) {
@@ -45,58 +45,28 @@ require(['./config'], () => {
                                 })
                             }
                             console.log(list);
-                            this.detail = {
+                            // this.detail = {
+                            //     list
+                            // }
+                            _this.detail = $.extend(true, {}, {
                                 list
-                            }
-                            const list1 = list.filter(function (item, index) {
-                                if (index / 16 < 1) {
-                                    return item
-                                }
                             })
-                            const list2 = list.filter(function (item, index) {
-                                if (index / 16 >= 1) {
-                                    return item
-                                }
-                            })
-                            console.log('detailList:', this.detail.list);
-                            console.log(list);
+                            console.log(_this.detail, 444)
+                            // 变换页面
+                            _this.changePage()
                             $('#list').html(
                                 template('listTemplate', {
-                                    list: list1
+                                    list: _this.detail.list.slice(0, 16)
                                 })
                             )
-                            $('#page1').on('click', function () {
-                                $('#list').html(
-                                    template('listTemplate', {
-                                        list: list1
-                                    })
-                                )
-                                $('html,body').scrollTop(0)
-                            })
-                            $('#page2').on('click', function () {
-                                $('#list').html(
-                                    template('listTemplate', {
-                                        list: list2
-                                    })
-                                )
-                                $('html,body').scrollTop(0)
-                            })
-                            /* 排序 */
-                            function sortByInt(array, key) {
-                                return array.sort(function (b, a) {
-                                    var x = a[key]
-                                    var y = b[key]
-                                    return x - y
-                                })
-                            }
-                            /* 渲染热销列表 */
-                            var list0 = sortByInt(list, "saleNum")
-                            console.log('排序后：', list0);
-                            $('#soldList').html(
-                                template('soldListTemplate', {
-                                    list0: list0.slice(0, 6)
-                                })
-                            )
+                            // 价格筛选
+                            _this.priceScreen()
+                            // 价格排序
+                            _this.priceFirst()
+                            // list被改变了
+                            console.log(list, 333);
+                            // 销量排序
+                            _this.saleFirst()
                             resolve()
                         }
                     })
@@ -108,10 +78,10 @@ require(['./config'], () => {
                 $('.add').on('click', function (e) {
                     /* 获取下拉框的数字 */
                     let plusNum = $(this).parents('.good').find('.select').val() - 0
-                    console.log('plusNum:', plusNum);
+                    // console.log('plusNum:', plusNum);
                     /* 异步方法必须在promise后调用 */
                     let id = $(this).parents('.good').data("id")
-                    console.log("id:", id)
+                    // console.log("id:", id)
                     _this.fly(e, id, _this.detail.list)
                     let myDetail
                     _this.detail.list.map(e => {
@@ -119,13 +89,13 @@ require(['./config'], () => {
                             myDetail = e
                         }
                     })
-                    console.log(myDetail)
+                    // console.log(myDetail)
                     // 先取，判断是否已有数据
                     let cart = localStorage.getItem('cart')
                     if (cart) {
                         // 购物车已经有数据了
                         cart = JSON.parse(cart)
-                        console.log('cart:', cart);
+                        // console.log('cart:', cart);
                         const isExist = cart.some(shop => shop.id === id)
                         if (isExist) {
                             cart = cart.map(shop => {
@@ -194,7 +164,7 @@ require(['./config'], () => {
                 let loveList = localStorage.getItem('loveList')
                 if (loveList) {
                     loveList = JSON.parse(loveList)
-                    console.log('喜欢列表', loveList);
+                    // console.log('喜欢列表', loveList);
                 }
                 // 过滤列表中不喜欢的东西
                 loveList = loveList.filter(function (item) {
@@ -208,6 +178,158 @@ require(['./config'], () => {
                         loveList
                     })
                 )
+            }
+            changePage() {
+                // console.log(this.detail);
+                const _this = this
+                this.page = 1
+                const {
+                    list
+                } = $.extend(true, {}, this.detail)
+                console.log(list, 9999);
+                // 分页
+                const list1 = list.filter(function (item, index) {
+                    if (index / 16 < 1) {
+                        return item
+                    }
+                })
+                const list2 = list.filter(function (item, index) {
+                    if (index / 16 >= 1) {
+                        return item
+                    }
+                })
+                // 第一页
+                $('#page1').on('click', function () {
+                    _this.page = 1
+                    // _this.detail.list=list1
+                    // console.log(_this.detail.list,909090);
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list1
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+                // 第一页的综合排序
+                $('#btn-class1').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list1
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+                $('#btn-price3').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list1
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+                // 第二页
+                $('#page2').on('click', function () {
+                    _this.page = 2
+                    // _this.detail.list = list2
+                    // console.log(_this.detail.list, 909090);
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list2
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+            }
+
+            priceScreen() {
+                console.log(this.detail,88888);
+                const {
+                    list
+                } = $.extend(true, {}, this.detail)
+                // 筛选价格
+                // 10元以下
+                let priceList1 = list.filter(function (item) {
+                    return item.price <= 10
+                })
+                console.log('10元以下', priceList1);
+                $('#btn-price1').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: priceList1
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+                // 10元以上
+                let priceList2 = list.filter(function (item) {
+                    return item.price >= 10
+                })
+                console.log('10元以上', priceList2);
+                $('#btn-price2').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: priceList2
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+
+            }
+            // 价格排序
+            priceFirst() {
+                const {
+                    list
+                } = $.extend(true, {}, this.detail)
+                /* 排序 */
+                function sortByInt(array, key) {
+                    return array.sort(function (b, a) {
+                        var x = a[key]
+                        var y = b[key]
+                        return y - x
+                    })
+                }
+                /* 按价格排序 */
+                var list_price = sortByInt(list, "price")
+                console.log('价格排序后：', list_price);
+                $('#btn-class2').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list_price
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
+            }
+            saleFirst() {
+                const {
+                    list
+                } = $.extend(true, {}, this.detail)
+                /* 排序 */
+                function sortByInt(array, key) {
+                    return array.sort(function (b, a) {
+                        var x = a[key]
+                        var y = b[key]
+                        return x - y
+                    })
+                }
+                //list0为销量排序后的商品表
+                var list0 = sortByInt(list, "saleNum")
+                console.log('销量排序后：', list0);
+                /* 渲染热销列表 */
+                $('#soldList').html(
+                    template('soldListTemplate', {
+                        list0: list0.slice(0, 6)
+                    })
+                )
+                // 按销量排序
+                $('#btn-class3').on('click', function () {
+                    $('#list').html(
+                        template('listTemplate', {
+                            list: list0
+                        })
+                    )
+                    $('html,body').scrollTop(0)
+                })
             }
         }
         new Index()
