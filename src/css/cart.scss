@@ -93,8 +93,9 @@ body {
     // @include toptop(500px, yellow); //133
     width: 100%;
     background-color: #ffffff;
-    min-height: 1000px;
-    overflow: auto;
+    // min-height: 1000px;
+    // overflow: auto;
+    height:auto;
     & .main {
         width: 1200px;
         // border: 1px solid;
