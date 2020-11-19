@@ -334,7 +334,7 @@ require(['./config'], () => {
                 $('#btn-class1').on('click', function () {
                     $('#list').html(
                         template('listTemplate', {
-                            list: list
+                            list: list.slice(0,16)
                         })
                     )
                     $('html,body').scrollTop(0)
@@ -342,7 +342,7 @@ require(['./config'], () => {
                 $('#btn-price3').on('click', function () {
                     $('#list').html(
                         template('listTemplate', {
-                            list: list
+                            list: list.slice(0, 16)
                         })
                     )
                     $('html,body').scrollTop(0)

@@ -152,6 +152,14 @@ header以外的其他html的js的constructor已经require了header的js后就
 const {
                     list
                 } = $.extend(true, {}, this.detail)
+
+设置flex之后换行后紧接着排：
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-content: flex-start;//设置纵向紧挨着排
+实现盒子高度自适应：
+    height: auto;
+
 -------------------------------
 前端获得数据有三种方法：
 1、本地json

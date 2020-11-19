@@ -65,15 +65,17 @@ body {
 
     .main {
         position: relative;
+
         .left {
             // width: 153px;
             height: 27px;
             float: left;
             // background-color: white;
             position: absolute;
-            top:0;
+            top: 0;
             bottom: 0;
             margin: auto 0;
+
             .div1 {
                 // width: 62px;
                 height: 27px;
@@ -84,6 +86,7 @@ body {
                 font-size: 14px;
                 color: #555;
                 padding-right: 10px;
+
                 button {
                     padding-left: 5px;
                     padding-right: 5px;
@@ -107,6 +110,7 @@ body {
                 font-size: 14px;
                 color: #555;
                 margin-left: 10px;
+
                 button {
                     padding-left: 5px;
                     padding-right: 5px;
@@ -129,10 +133,11 @@ body {
             padding: 2px 0;
             // background-color: white;
             position: absolute;
-             top:0;
-             bottom: 0;
-             right: 0;
-             margin: auto 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto 0;
+
             .div1 {
                 line-height: 27px;
                 text-align: center;
@@ -147,17 +152,23 @@ body {
 /* top3 */
 .top3 {
     @include toptop(2000px, orange);
-    flex: 1;
+    // flex: 1;
     // overflow: auto;
-    padding: 48px 0;    /* 怎样隐藏滚动条？？ */
+    padding: 48px 0;    
+    /* 怎样隐藏滚动条？？ */
     border-top: 1px solid #ccc;
-    .main{
-        display: flex;
-        // justify-content: space-between;
-        flex-wrap: wrap;
+    height: auto;
+    // min-height: 400px;
+    .main {
         width: 1300px;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-content: flex-start;//设置纵向紧挨着排
     }
-    .good{
+
+    .good {
         width: 307px;
         height: 467px;
         padding: 30px 15px 0;
@@ -165,7 +176,8 @@ body {
         background-color: white;
         margin-bottom: 20px;
         margin-left: 15px;
-        img{
+
+        img {
             // position: absolute;
             width: 277px;
             height: 277px;
@@ -175,7 +187,8 @@ body {
             // top:0;
             // left:0;
         }
-        .info1{
+
+        .info1 {
             width: 277px;
             height: 47px;
             padding: 0 8px;
@@ -184,6 +197,7 @@ body {
             color: black;
             text-align: center;
         }
+
         .info2 {
             width: 277px;
             height: 20px;
@@ -193,26 +207,31 @@ body {
             line-height: 20px;
             color: #555;
             text-align: center;
-            span:nth-child(1){
+
+            span:nth-child(1) {
                 color: #f80000;
             }
+
             span:nth-child(2) {
                 text-decoration: line-through;
             }
         }
+
         .info3 {
             width: 277px;
             height: 34px;
             margin: 14px 0 0;
             font-size: 14px;
             color: #444;
-            .center{
+
+            .center {
                 width: 110px;
                 height: 34px;
-            position: relative;
+                position: relative;
                 left: 0;
                 right: 0;
                 margin: 0 auto;
+
                 select {
                     width: 52px;
                     height: 34px;
@@ -230,24 +249,28 @@ body {
                     color: white;
                     background: url(/images/blue.png) no-repeat center center;
                     background-size: 15px 15px;
-                     background-color: #0070c9;
+                    background-color: #0070c9;
 
                 }
             }
-            
+
         }
     }
 }
+
 /* top33 */
 .top33 {
     @include toptop(60px, yellow);
+
     .main {
         position: relative;
+
         .left {
             width: 100%;
             height: 27px;
             position: relative;
             top: 20px;
+
             .div1 {
                 width: 62px;
                 height: 27px;
@@ -273,15 +296,18 @@ body {
         }
     }
 }
+
 /* top4 */
 @mixin top4 {
     @include toptop(367px, skyblue);
     padding: 48px 0;
     border-top: 1px solid #ccc;
-    .main{
-        .top{
+
+    .main {
+        .top {
             height: 43px;
             padding: 0 0 15px;
+
             .a1 {
                 font-size: 25px;
                 font-weight: bold;
@@ -318,12 +344,14 @@ body {
                 }
             }
         }
-        .bot ul{
+
+        .bot ul {
             width: 100%;
-            height: 236px; 
+            height: 236px;
             display: flex;
             // justify-content: space-between;
             overflow: hidden;
+
             li {
                 width: 187px;
                 height: 236px;
@@ -332,10 +360,12 @@ body {
                 background-color: white;
                 position: relative;
                 margin-left: 15px;
-                img{
+
+                img {
                     width: 187px;
                     height: 187px;
                 }
+
                 a {
                     color: #28292c;
                     display: block;
@@ -368,9 +398,11 @@ body {
         }
     }
 }
-.top4{
+
+.top4 {
     @include top4();
 }
+
 /* top5 */
 .top5 {
     @include toptop(375px, pink);
@@ -386,6 +418,7 @@ body {
     position: fixed;
     right: 0;
     top: 300px;
+
     span {
         display: block;
         width: 20px;
@@ -401,6 +434,7 @@ body {
         right: 3px;
     }
 }
+
 .fly {
     width: 20px;
     height: 20px;
