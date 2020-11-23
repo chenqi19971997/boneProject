@@ -222,40 +222,38 @@ body {
 		overflow: hidden;
 	}
 	.swiper-container{
-		position: relative;
+		// position: relative;
+		width: 100%;
 	}
-	.swiper-button-next:after,
-	.swiper-button-prev:after{
-		display: block;
-		width: 30px;
-		height: 30px;
-		border-radius: 50%;
-		background-color: white;
-		position: absolute;
-		// right: -15px;
-		// top: 50%;
-		// transform: translateY(-50%);
-		z-index: 999;
-		line-height: 30px;
-		text-align: center;
-		font-size: 14px;
-		font-weight: bold;
-		color:#444;
-	}
-	.swiper-button-prev:after{	/* 有个黑框，不好变位置 */
-		// left: -25px;
-		// top:50%;
-		// transform: translateY(-50%);
-	}
-	.swiper-button-next:after{
-		// right: -25px;
-		// top: 50%;
-		// transform: translateY(-50%);
-	}
-	.swiper-container{
-		// width: 100%;
-		// height: 100%;
-	}
+	
+	// .swiper-button-next:after,
+	// .swiper-button-prev:after{
+	// 	display: block;
+	// 	width: 30px;
+	// 	height: 30px;
+	// 	border-radius: 50%;
+	// 	background-color: white;
+	// 	position: absolute;
+	// 	// right: -15px;
+	// 	// top: 50%;
+	// 	// transform: translateY(-50%);
+	// 	z-index: 999;
+	// 	line-height: 30px;
+	// 	text-align: center;
+	// 	font-size: 14px;
+	// 	font-weight: bold;
+	// 	color:#444;
+	// }
+	// .swiper-button-prev:after{	/* 有个黑框，不好变位置 */
+	// 	// left: -25px;
+	// 	// top:50%;
+	// 	// transform: translateY(-50%);
+	// }
+	// .swiper-button-next:after{
+	// 	// right: -25px;
+	// 	// top: 50%;
+	// 	// transform: translateY(-50%);
+	// }
 	.main ul {
 		display: flex;
 		justify-content: space-between;

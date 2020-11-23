@@ -111,6 +111,11 @@ require(['./config'], () => {
                     _this.cart = _this.cart.map(shop => {
                         if (shop.id === id) {
                             let cartObj = JSON.parse(localStorage.getItem('cart'))
+                            if (cartObj.length==1){
+                                console.log('最后一个商品');
+                                $('.shopping_car').css('display', 'none')
+                                $('.cart-empty').css('display', 'block')
+                            }
                             for (var i = 0; i < cartObj.length; i++) {
                                 if (cartObj[i].id === id) {
                                     cartObj.splice(i, 1)

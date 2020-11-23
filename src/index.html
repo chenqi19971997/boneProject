@@ -56,8 +56,8 @@
         <div class="main">
             <a href="" class="a1">热销商品</a>
             <div>
-                <span></span>
-                <span></span>
+                <!-- <span></span>
+                <span></span> -->
             </div>
         </div>
     </div>
@@ -84,22 +84,19 @@
                 <!-- 熊猫优选渲染 -->
                 <script type="text/html" id="giftList3Template">
                     {{each list item, index}}
-                    <div class="swiper-slide slide{{index+1}}">
-                        <li>
+                        <li class="swiper-slide slide{{index+1}}">
                             <img src="{{item.image}}" alt="">
                             <a href="/html/details.html?id={{item.id}}">{{(item.title).slice(0,10)}}... </a>
                             <span>{{index + 1}}</span>
                         </li>
-                    </div>
                     {{/each}}
                 </script>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
             </div>
             <!-- 轮播 -->
-            
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <!-- <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div> -->
         </div>
     </div>
     <div class="top5">
